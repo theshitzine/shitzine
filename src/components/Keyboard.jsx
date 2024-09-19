@@ -70,7 +70,7 @@ function CustomKeyboard({ onKeyPress }) {
   return (
     <div
       className="keyboard"
-      style={{ display: "flex", flexDirection: "column" }}
+      style={{ display: "none", flexDirection: "column" }}
     >
       {/* Key Rows */}
       {keys.map((row, rowIndex) => (

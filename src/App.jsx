@@ -5,7 +5,7 @@ import EndPage from "./components/EndPage";
 import "./App.css";
 
 function App() {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(2);
 
   const nextPage = () => {
     setPage(page + 1);
