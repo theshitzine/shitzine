@@ -1,42 +1,31 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.display {
+  padding: 20px;
+  min-width: 300px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-size: 24px;
+  background-color: #fff;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  transform: rotate(90deg);
+  transform-origin: left top;
+  font-family: "Bauhaus Lace Rnd Display", sans-serif;
+  color: white; /* Set text color to white */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000; /* Black border */
+  letter-spacing: -0.05em; /* Adjust tracking for tighter spacing */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+/* Style for the letter elements */
+.chopped {
+  font-family: "Bauhaus Lace Rnd Display", sans-serif;
+  font-size: 24px;
+  color: white; /* Set text color to white */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000; /* Black border */
+  letter-spacing: -0.05em; /* Adjust tracking for tighter spacing */
+  transform: rotate(90deg); /* Rotate each letter 90 degrees clockwise */
+  transform-origin: center; /* Rotate around the center for a consistent appearance */
 }

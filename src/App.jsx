@@ -2,6 +2,7 @@ import { useState } from "react";
 import LandingPage from "./components/LandingPage";
 import MatterTextInput from "./components/MatterTextInput";
 import EndPage from "./components/EndPage";
+import "./App.css";
 
 function App() {
   const [page, setPage] = useState(1);

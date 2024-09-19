@@ -1,6 +1,5 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -35,6 +34,10 @@ h1 {
   line-height: 1.1;
 }
 
+.keyboard > div > button {
+  background-color: transparent;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -48,6 +51,13 @@ button {
 }
 button:hover {
   border-color: #646cff;
+}
+#space {
+  width: 6em !important;
+  background-color: #343434;
+  height: 1em;
+  align-self: center;
+  border-radius: 0.8em;
 }
 button:focus,
 button:focus-visible {
