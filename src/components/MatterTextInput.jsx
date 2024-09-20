@@ -419,6 +419,9 @@ const MatterTextInput = ({ nextPage }) => {
         <div id="question">
           <div style={{ padding: "20px", textAlign: "center" }}>
             {selectedQuestion}
+            <div style={{ color: "rgba(0, 0, 0, 0.53)", marginTop: ".5em" }}>
+              (TYPE!)
+            </div>
           </div>
         </div>
         <div ref={sceneRef}></div>
