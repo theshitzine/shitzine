@@ -1,16 +1,39 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Matter from "matter-js";
 import Keyboard from "./Keyboard"; // Assuming you have the Keyboard component
+import { firestore } from "./firebase"; // Import Firebase auth and Firestore
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"; // Import Firestore functions
+import "./flushAnimation.css";
 
-const MatterTextInput = () => {
+const MatterTextInput = ({ nextPage }) => {
   const sceneRef = useRef(null);
   const engineRef = useRef(null);
   const renderRef = useRef(null);
-  const chainBodies = useRef([]); // Array of chains
+  const chainBodies = useRef([]); // Array to store multiple chains
   const currentChain = useRef([]); // Current chain being built
   const anchorRef = useRef(null); // Static body for anchoring the first character chain
 
+  // State to store the text typed by the user
+  const [text, setText] = useState("");
+  const [selectedQuestion, setSelectedQuestion] = useState(""); // State to store the selected question
+  const [isFlushing, setIsFlushing] = useState(false); // State to track flushing animation
+  const [isStretching, setIsStretching] = useState(false); // State to trigger the stretch animation
   const keyboardHeight = 206;
+
+  useEffect(() => {
+    const questions = [
+      "tell us about the strangest place you've ever had to go!",
+      "what's the weirdest thing you've ever done to unclog yourself?",
+      "describe a time when nature called at the worst possible moment!",
+      "what's your survival story from a bathroom emergency?",
+      "tell us about your most memorable public bathroom adventure!",
+    ];
+
+    // Select a random question on page load
+    const randomQuestion =
+      questions[Math.floor(Math.random() * questions.length)];
+    setSelectedQuestion(randomQuestion);
+  }, []);
 
   // Function to disconnect the chain from the fixed point
   const disconnectChain = () => {
@@ -33,7 +56,7 @@ const MatterTextInput = () => {
 
   // Function to add a letter to the chain with a circle boundary
   const addLetterToChain = (letter) => {
-    const yOffset = 25; // Vertical distance between letters
+    const yOffset = 24; // Vertical distance between letters
     const world = engineRef.current.world;
 
     // Calculate the position for the new letter above the previous one
@@ -49,9 +72,9 @@ const MatterTextInput = () => {
       20,
       {
         collisionFilter: { group: Matter.Body.nextGroup(true) },
-        density: 0.5, // Adjusted density for stability
-        friction: 0.01, // Adjusted friction for smoother movement
-        restitution: 0.2, // Adjusted restitution to prevent sticking
+        density: 5.0, // Adjusted density for heavier worm
+        friction: 2, // Adjusted friction to reduce sliding
+        restitution: 0.01, // Reduced bounciness
         render: {
           visible: false, // Disable default rendering
         },
@@ -77,8 +100,8 @@ const MatterTextInput = () => {
           bodyB: letterBody,
           pointA: { x: 0, y: yOffset / 2 },
           pointB: { x: 0, y: -yOffset / 2 },
-          stiffness: 0.6, // Adjusted stiffness for stability
-          damping: 0.3, // Adjusted damping to reduce oscillation
+          stiffness: 0.1, // Decreased stiffness for less elasticity
+          damping: 0, // Increased damping to reduce springiness
           length: yOffset,
           render: { visible: false },
         })
@@ -94,8 +117,8 @@ const MatterTextInput = () => {
           bodyB: letterBody,
           pointA: { x: 0, y: 0 },
           pointB: { x: 0, y: -yOffset / 2 },
-          stiffness: 0.2, // Adjusted stiffness for stability
-          damping: 0.3, // Adjusted damping to reduce oscillation
+          stiffness: 0.05, // Decreased stiffness
+          damping: 0.8, // Increased damping
           render: { visible: false },
         })
       );
@@ -120,9 +143,9 @@ const MatterTextInput = () => {
     engineRef.current = engine;
 
     // Increase the number of iterations for constraints, velocity, and position
-    engine.constraintIterations = 10; // Default is 2, increase for more stable constraint handling
+    engine.constraintIterations = 15; // Increased for more stable constraint handling
     engine.velocityIterations = 8; // Default is 6, adjust for more accurate velocity simulation
-    engine.positionIterations = 6; // Default is 6, adjust for more accurate position simulation
+    engine.positionIterations = 10; // Increased for more accurate position solving
 
     // Lower the delta for updates to increase update frequency
     engine.timing.timeScale = 1;
@@ -159,12 +182,12 @@ const MatterTextInput = () => {
     // Create a fixed ground
     const ground = Bodies.rectangle(
       window.innerWidth / 2,
-      window.innerHeight - 10 - keyboardHeight,
+      window.innerHeight - keyboardHeight + 95,
       window.innerWidth,
-      20,
+      200,
       {
         isStatic: true,
-        render: { fillStyle: "brown" },
+        render: { fillStyle: "transparent" },
       }
     );
     Composite.add(world, ground);
@@ -209,8 +232,14 @@ const MatterTextInput = () => {
     const handleKeyUp = (event) => {
       if (event.key === " " || event.key === "Enter") {
         disconnectChain();
+        if (event.key === "Enter") {
+          setText((prevText) => prevText + "\n"); // Add a line break to the text
+        } else if (event.key === " ") {
+          setText((prevText) => prevText + " "); // Add a space to the text
+        }
       } else if (event.key.length === 1) {
         addLetterToChain(event.key);
+        setText((prevText) => prevText + event.key); // Append the letter to the text
       }
     };
 
@@ -249,7 +278,7 @@ const MatterTextInput = () => {
           );
 
           // Set styles
-          const radius = 20; // The radius of your circles
+          const radius = 22; // The radius of your circles
           const borderWidth = 4; // Adjust as needed
 
           // First, stroke with a larger lineWidth to create the border
@@ -262,10 +291,8 @@ const MatterTextInput = () => {
 
           // Then, stroke with the fill color to fill the worm
           context.lineWidth = radius * 2;
-          context.strokeStyle = "#7b5c00"; // Fill color
+          context.strokeStyle = "#7B5C00"; // Fill color
           context.stroke();
-
-          // Optionally, fill the path to cover any gaps
 
           // Close the path
           context.closePath();
@@ -277,12 +304,11 @@ const MatterTextInput = () => {
             context.translate(x, y);
             context.textAlign = "center";
             context.textBaseline = "middle";
-            context.font = "30px Arial";
-            context.fillStyle = "#000";
-            context.strokeStyle = "#fff";
+            context.font = "24px Aspekta Variable";
+            context.fillStyle = "#fff";
             context.lineWidth = 1;
-            context.strokeText(body.letter, 0, 0);
-            context.fillText(body.letter, 0, 0);
+            context.strokeText(body.letter.toUpperCase(), 0, 0);
+            context.fillText(body.letter.toUpperCase(), 0, 0);
             context.restore();
           });
         }
@@ -322,16 +348,82 @@ const MatterTextInput = () => {
   const handleKeyPress = (key) => {
     if (key === " " || key === "ENTER") {
       disconnectChain(); // Disconnect chain on space or enter
+      if (key === "ENTER") {
+        setText((prevText) => prevText + "\n"); // Add a line break to the text
+      } else if (key === " ") {
+        setText((prevText) => prevText + " "); // Add a space to the text
+      }
     } else {
       addLetterToChain(key); // Add letter to chain
+      setText((prevText) => prevText + key); // Append the letter to the text
     }
   };
 
+  // Function to handle submitting the message
+  const handleSubmit = async () => {
+    if (text.trim()) {
+      try {
+        // Submit the message to Firestore under the section corresponding to the selected question
+        // await addDoc(
+        //   collection(firestore, `questions/${selectedQuestion}/messages`),
+        //   {
+        //     text: text,
+        //     createdAt: serverTimestamp(), // Use serverTimestamp for creation time
+        //   }
+        // );
+
+        console.log("Message submitted to Firestore");
+
+        // Reset the text input after submission
+        setText("");
+
+        setIsFlushing(true);
+
+        // Play a sound on submit
+        playSubmitSound();
+
+        setTimeout(() => {
+          setIsStretching(true);
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth", // Smooth scroll to the top of the page
+          });
+        }, 1000);
+
+        setTimeout(() => {
+          nextPage();
+        }, 4000);
+      } catch (error) {
+        console.error("Error submitting message to Firestore:", error);
+      }
+    }
+  };
+
+  const playSubmitSound = () => {
+    const audioElement = document.getElementById("submit-sound");
+    audioElement.currentTime = 0; // Reset the audio to the start in case it's already been played
+    audioElement.play().catch((error) => {
+      console.error("Error playing audio:", error);
+    });
+  };
+
   return (
-    <div>
-      <div ref={sceneRef} />
-      <Keyboard onKeyPress={handleKeyPress} />
-    </div>
+    <>
+      <div
+        className={isFlushing ? "flushed" : ""}
+        style={{ transition: "all 4s ease" }}
+      >
+        <div id="question">
+          <div style={{ padding: "20px", textAlign: "center" }}>
+            {selectedQuestion}
+          </div>
+        </div>
+        <div ref={sceneRef}></div>
+        <Keyboard onKeyPress={handleKeyPress} />
+        <button onClick={handleSubmit}>SUBMIT?</button>
+      </div>
+      {isStretching && <div className="stretching"></div>}
+    </>
   );
 };
 

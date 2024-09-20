@@ -1,10 +1,19 @@
+@font-face {
+  font-family: "Aspekta Variable";
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  src: url("/fonts/AspektaVF.woff2") format("woff2");
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-weight: 400;
+  font-family: "Aspekta Variable", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-weight: 200;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgb(0, 0, 0);
+  background-color: #ffe8ef;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -21,6 +30,18 @@ a:hover {
   color: #535bf2;
 }
 
+h1 {
+  font-weight: 500;
+}
+
+#init {
+  font-size: 48px;
+}
+
+#init span {
+  word-break: keep-all;
+  white-space: nowrap;
+}
 body {
   margin: 0;
   display: flex;
@@ -29,16 +50,26 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#question {
+  position: absolute;
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  z-index: -1;
 }
 
 .keyboard > div > button {
   background-color: transparent;
 }
 
-button {
+.keyboard-button {
+  background-color: transparent;
+  padding: 3px;
+
+  font-size: 24px;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -46,6 +77,19 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button {
+  padding: 10px;
+  border-radius: 28px;
+  border: 6px solid rgba(0, 0, 0, 0.13);
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 48px;
+  font-weight: 500;
+  font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -59,20 +103,57 @@ button:hover {
   align-self: center;
   border-radius: 0.8em;
 }
+
+#end-page {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #422700;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#end-page p {
+  margin-bottom: 0;
+}
+
+#end-page p:not(:first-of-type) {
+  margin-top: 0;
+}
+
+#end-lower article {
+  margin-bottom: 2em;
+}
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@media screen and (min-width: 1024px) {
+  #end-lower {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
-  a:hover {
-    color: #747bff;
+
+  #end-lower article {
+    width: 30%;
   }
-  button {
-    background-color: #f9f9f9;
+
+  #end-upper {
+    font-size: 48px;
+  }
+
+  #end-upper h1 {
+    margin-bottom: 5px;
+    margin-top: 0;
+  }
+
+  #end-upper p {
+    margin-top: 0;
+    font-weight: 500;
   }
 }

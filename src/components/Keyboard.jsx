@@ -70,7 +70,7 @@ function CustomKeyboard({ onKeyPress }) {
   return (
     <div
       className="keyboard"
-      style={{ display: "none", flexDirection: "column" }}
+      style={{ display: "flex", flexDirection: "column" }}
     >
       {/* Key Rows */}
       {keys.map((row, rowIndex) => (
@@ -83,14 +83,12 @@ function CustomKeyboard({ onKeyPress }) {
               id={key === " " ? "space" : key}
               key={key}
               onClick={() => handleKeyPress(key)}
+              className="keyboard-button"
               style={{
                 width:
                   key === "SHIFT" || key === "ENTER"
                     ? "fit-content"
                     : "calc(1em + 6px)",
-                padding: "3px",
-
-                fontSize: "24px",
                 backgroundColor: key === "SHIFT" && shiftActive ? "#ccc" : "", // Only change the SHIFT key background
               }}
             >
