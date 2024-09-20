@@ -59,6 +59,12 @@ body {
   align-items: center;
   text-transform: uppercase;
   z-index: -1;
+  font-size: 20px;
+}
+
+.keyboard {
+  display: flex;
+  color: rgb(0, 0, 0);
 }
 
 .keyboard > div > button {
@@ -69,14 +75,11 @@ body {
   background-color: transparent;
   padding: 3px;
 
-  font-size: 24px;
+  font-size: 22px;
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
   font-weight: 532;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -141,6 +144,16 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+@media screen and (max-width: 1024px) {
+  #submit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
+    border: 4px solid rgba(0, 0, 0, 0.13);
+  }
+}
+
 @media screen and (min-width: 1024px) {
   #end-lower {
     display: flex;
@@ -164,5 +177,13 @@ button:focus-visible {
   #end-upper p {
     margin-top: 0;
     font-weight: 532;
+  }
+
+  #question {
+    font-size: 48px;
+  }
+
+  .keyboard {
+    display: none;
   }
 }

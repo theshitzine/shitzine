@@ -372,8 +372,6 @@ const MatterTextInput = ({ nextPage }) => {
           }
         );
 
-        console.log("Message submitted to Firestore");
-
         // Reset the text input after submission
         setText("");
 
@@ -411,7 +409,12 @@ const MatterTextInput = ({ nextPage }) => {
     <>
       <div
         className={isFlushing ? "flushed" : ""}
-        style={{ transition: "all 4s ease" }}
+        style={{
+          transition: "all 4s ease",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
       >
         <div id="question">
           <div style={{ padding: "20px", textAlign: "center" }}>
@@ -420,7 +423,9 @@ const MatterTextInput = ({ nextPage }) => {
         </div>
         <div ref={sceneRef}></div>
         <Keyboard onKeyPress={handleKeyPress} />
-        <button onClick={handleSubmit}>SUBMIT?</button>
+        <button id="submit" onClick={handleSubmit}>
+          SUBMIT?
+        </button>
       </div>
       {isStretching && <div className="stretching"></div>}
     </>

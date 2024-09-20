@@ -3,7 +3,7 @@ import { useState } from "react";
 const keys = [
   ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
   ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
-  ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+  ["a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'"],
   ["SHIFT", "z", "x", "c", "v", "b", "n", "m"],
   [",", " ", ".", "ENTER"],
 ];
@@ -68,10 +68,7 @@ function CustomKeyboard({ onKeyPress }) {
   };
 
   return (
-    <div
-      className="keyboard"
-      style={{ display: "flex", flexDirection: "column" }}
-    >
+    <div className="keyboard" style={{ flexDirection: "column" }}>
       {/* Key Rows */}
       {keys.map((row, rowIndex) => (
         <div
