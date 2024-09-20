@@ -18,7 +18,7 @@ const MatterTextInput = ({ nextPage }) => {
   const [selectedQuestion, setSelectedQuestion] = useState(""); // State to store the selected question
   const [isFlushing, setIsFlushing] = useState(false); // State to track flushing animation
   const [isStretching, setIsStretching] = useState(false); // State to trigger the stretch animation
-  const keyboardHeight = 206;
+  const keyboardHeight = 266;
 
   useEffect(() => {
     const questions = [
@@ -363,6 +363,7 @@ const MatterTextInput = ({ nextPage }) => {
   const handleSubmit = async () => {
     if (text.trim()) {
       try {
+        console.log("submit");
         // Submit the message to Firestore under the section corresponding to the selected question
         await addDoc(
           collection(firestore, `questions/${selectedQuestion}/messages`),

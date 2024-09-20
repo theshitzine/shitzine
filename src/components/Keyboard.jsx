@@ -85,7 +85,7 @@ function CustomKeyboard({ onKeyPress }) {
                 width:
                   key === "SHIFT" || key === "ENTER"
                     ? "fit-content"
-                    : "calc(1em + 6px)",
+                    : "calc(1em + 7px)",
                 backgroundColor: key === "SHIFT" && shiftActive ? "#ccc" : "", // Only change the SHIFT key background
               }}
             >

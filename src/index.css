@@ -99,7 +99,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #a4a4a4;
 }
 #space {
   width: 6em !important;
