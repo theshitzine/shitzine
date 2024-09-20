@@ -16,21 +16,43 @@ function EndPage() {
 
       <section id="end-lower">
         <article>
-          <h1>TEAM</h1>
+          <h1>POOPERS</h1>
           <div>
-            <p>Wutong</p>
-            <p>Yixiao Zhao</p>
-            <p>Will Hsu</p>
+            <p>
+              <a
+                className="end-a"
+                href="https://www.instagram.com/wutongwutongworks/"
+              >
+                Wu Tong
+              </a>
+            </p>
+            <p>
+              <a className="end-a" href="https://www.instagram.com/yixiaozyx/">
+                Yixiao Zhao
+              </a>
+            </p>
+            <p>
+              <a className="end-a" href="https://www.instagram.com/wilverhsu/">
+                William Hsu
+              </a>
+            </p>
           </div>
         </article>
         <article>
           <h1>CONTACT</h1>
           <div>
             <p>
-              <a href="https://www.instagram.com/theshitzine/">@theshitzine</a>
+              <a
+                className="end-a"
+                href="https://www.instagram.com/theshitzine/"
+              >
+                @theshitzine
+              </a>
             </p>
             <p>
-              <a href="mailto:theshitzine@gmail.com">theshitzine@gmail.com</a>
+              <a className="end-a" href="mailto:theshitzine@gmail.com">
+                theshitzine@gmail.com
+              </a>
             </p>
           </div>
         </article>
@@ -39,8 +61,15 @@ function EndPage() {
           <div>
             <p>Come on, Computer!</p>
             <p>
-              (<a href="mailto:alex@come-on-computer.works">Alex</a> &{" "}
-              <a href="val@come-on-computer.works">Val</a>)
+              (
+              <a className="end-a" href="mailto:alex@come-on-computer.works">
+                Alex
+              </a>{" "}
+              &{" "}
+              <a className="end-a" href="mailto:val@come-on-computer.works">
+                Val
+              </a>
+              )
             </p>
           </div>
         </article>

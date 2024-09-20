@@ -73,7 +73,7 @@ const MatterTextInput = ({ nextPage }) => {
       {
         collisionFilter: { group: Matter.Body.nextGroup(true) },
         density: 5.0, // Adjusted density for heavier worm
-        friction: 2, // Adjusted friction to reduce sliding
+        friction: 5, // Adjusted friction to reduce sliding
         restitution: 0.01, // Reduced bounciness
         render: {
           visible: false, // Disable default rendering
@@ -364,13 +364,13 @@ const MatterTextInput = ({ nextPage }) => {
     if (text.trim()) {
       try {
         // Submit the message to Firestore under the section corresponding to the selected question
-        // await addDoc(
-        //   collection(firestore, `questions/${selectedQuestion}/messages`),
-        //   {
-        //     text: text,
-        //     createdAt: serverTimestamp(), // Use serverTimestamp for creation time
-        //   }
-        // );
+        await addDoc(
+          collection(firestore, `questions/${selectedQuestion}/messages`),
+          {
+            text: text,
+            createdAt: serverTimestamp(), // Use serverTimestamp for creation time
+          }
+        );
 
         console.log("Message submitted to Firestore");
 

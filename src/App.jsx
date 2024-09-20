@@ -7,7 +7,7 @@ import { signInAnonymously } from "firebase/auth"; // Import signInAnonymously
 import "./App.css";
 
 function App() {
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
 
   const nextPage = () => {
     setPage(page + 1);
@@ -15,9 +15,13 @@ function App() {
   };
 
   useEffect(() => {
-    signInAnonymously(auth).catch((error) => {
-      console.error("Error signing in anonymously:", error);
-    });
+    signInAnonymously(auth)
+      .then((userCredential) => {
+        console.log("User signed in anonymously:", userCredential.user.uid);
+      })
+      .catch((error) => {
+        console.error("Error signing in anonymously:", error);
+      });
   }, []);
 
   return (
