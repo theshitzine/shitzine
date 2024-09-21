@@ -10,7 +10,7 @@ function EndPage() {
         <h1>@BROOKLYN ART BOOK FAIR 2024</h1>
         <div>
           <p>Sept. 20-22</p>
-          <p>Recess. 46 Washington Ave, Brooklyn, New York</p>
+          <p>Recess. 6 Waverly Ave, Brooklyn, New York</p>
         </div>
       </section>
 
