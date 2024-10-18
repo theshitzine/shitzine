@@ -7,10 +7,17 @@ function EndPage() {
       </section>
 
       <section id="end-mid">
-        <h1>@BROOKLYN ART BOOK FAIR 2024</h1>
+        <h1>@OFFSET ART BOOK FAIR 2024</h1>
         <div>
-          <p>Sept. 20-22</p>
-          <p>Recess. 6 Waverly Ave, Brooklyn, New York</p>
+          <p>Sat. Oct. 26</p>
+          <p>Parsons School of Design</p>
+          <p>2 West 13th St, 6th Floor</p>
+          <p>New York, NY 10011</p>
+          <p>
+            <a className="end-a" href="https://parsons.github.io/offset/">
+              RSVP
+            </a>
+          </p>
         </div>
       </section>
 
@@ -34,6 +41,16 @@ function EndPage() {
             <p>
               <a className="end-a" href="https://www.instagram.com/wilverhsu/">
                 William Hsu
+              </a>
+            </p>
+            <p>
+              <a className="end-a" href="https://www.instagram.com/aaryakini/">
+                Aarya Kini
+              </a>
+            </p>
+            <p>
+              <a className="end-a" href="https://www.instagram.com/randrivera/">
+                Rand Rivera
               </a>
             </p>
           </div>
