@@ -7,7 +7,7 @@ import { signInAnonymously } from "firebase/auth"; // Import signInAnonymously
 import "./App.css";
 
 function App() {
-  const [page, setPage] = useState(3);
+  const [page, setPage] = useState(1);
 
   const nextPage = () => {
     setPage(page + 1);
