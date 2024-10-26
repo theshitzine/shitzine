@@ -426,7 +426,7 @@ const MatterTextInput = ({ nextPage }) => {
           <div style={{ padding: "20px", textAlign: "center" }}>
             {selectedQuestion}
             <div style={{ color: "rgba(0, 0, 0, 0.53)", marginTop: ".5em" }}>
-              (TYPE!)
+              (TYPE & DRAG!)
             </div>
           </div>
         </div>
