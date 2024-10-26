@@ -38,48 +38,68 @@ h1 {
   font-size: 48px;
   margin-left: 20px;
   margin-right: 20px;
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#init p {
+  margin: 0;
 }
 
 #init span {
   word-break: keep-all;
   white-space: nowrap;
 }
+
+#baby {
+  font-size: 28px;
+  color: rgba(0, 0, 0, 0.58);
+}
+
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 #question {
   position: absolute;
   width: 100vw;
-  height: 90vh;
+  height: 58%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
   z-index: -1;
   font-size: 20px;
+  color: rgba(0, 0, 0, 0.53);
 }
 
 .keyboard {
   display: flex;
   color: rgb(0, 0, 0);
+  gap: 2px;
 }
 
 .keyboard > div > button {
-  background-color: transparent;
+  background-color: #42383a;
 }
 
 .keyboard-button {
   background-color: transparent;
   padding: 3px;
-
+  color: #feeff4;
   font-size: 22px;
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: none;
   font-weight: 532;
   font-family: inherit;
   cursor: pointer;

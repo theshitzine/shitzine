@@ -3,9 +3,9 @@ import { useState } from "react";
 const keys = [
   ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
   ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
-  ["a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'"],
+  ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
   ["SHIFT", "z", "x", "c", "v", "b", "n", "m"],
-  [",", " ", ".", "/", "ENTER"],
+  [",", "SPACE", ".", "ENTER"],
 ];
 
 // SHIFT alternates for numbers and symbols
@@ -73,7 +73,7 @@ function CustomKeyboard({ onKeyPress }) {
       {keys.map((row, rowIndex) => (
         <div
           key={rowIndex}
-          style={{ display: "flex", justifyContent: "center" }}
+          style={{ display: "flex", justifyContent: "center", gap: "2px" }}
         >
           {row.map((key) => (
             <button
@@ -83,7 +83,7 @@ function CustomKeyboard({ onKeyPress }) {
               className="keyboard-button"
               style={{
                 width:
-                  key === "SHIFT" || key === "ENTER"
+                  key === "SHIFT" || key === "ENTER" || key == "SPACE"
                     ? "fit-content"
                     : "calc(1em + 7px)",
                 backgroundColor: key === "SHIFT" && shiftActive ? "#ccc" : "", // Only change the SHIFT key background

@@ -12,9 +12,12 @@ function LandingPage({ nextPage }) {
       }}
     >
       <h1 id="init">
-        WILL YOU <span>SH!T</span> WITH US?
+        <p>
+          WILL YOU <span>SH!T</span> WITH US? <br />
+        </p>
+        <button onClick={nextPage}>YES</button>
+        <span id="baby">(SOUND ON!)</span>
       </h1>
-      <button onClick={nextPage}>YES</button>
     </div>
   );
 }

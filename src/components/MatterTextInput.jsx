@@ -18,7 +18,7 @@ const MatterTextInput = ({ nextPage }) => {
   const [selectedQuestion, setSelectedQuestion] = useState(""); // State to store the selected question
   const [isFlushing, setIsFlushing] = useState(false); // State to track flushing animation
   const [isStretching, setIsStretching] = useState(false); // State to trigger the stretch animation
-  const keyboardHeight = 266;
+  const keyboardHeight = 308;
 
   useEffect(() => {
     const questions = [
@@ -27,6 +27,11 @@ const MatterTextInput = ({ nextPage }) => {
       "describe a time when nature called at the worst possible moment!",
       "what's your survival story from a bathroom emergency?",
       "tell us about your most memorable public bathroom adventure!",
+      "what's the most bizarre bathroom setup you've ever encountered?",
+      "what's the wildest bathroom improvisation you've ever made?",
+      "what's the most desperate thing you've done when there were no bathrooms?",
+      "describe a time when your bathroom hunt led you somewhere unexpected!",
+      "what's your most awkward moment involving a bathroom line?",
     ];
 
     // Select a random question on page load
@@ -346,11 +351,11 @@ const MatterTextInput = ({ nextPage }) => {
 
   // Handler for key presses from the custom Keyboard
   const handleKeyPress = (key) => {
-    if (key === " " || key === "ENTER") {
+    if (key === "SPACE" || key === "ENTER") {
       disconnectChain(); // Disconnect chain on space or enter
       if (key === "ENTER") {
         setText((prevText) => prevText + "\n"); // Add a line break to the text
-      } else if (key === " ") {
+      } else if (key === "SPACE") {
         setText((prevText) => prevText + " "); // Add a space to the text
       }
     } else {
